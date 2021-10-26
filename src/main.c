@@ -21,22 +21,32 @@ typedef struct word {
 Word *readFromFile(FILE *file);
 
 int main(int argc, char **argv) {
+
+    for (int i = 0; i < argc; i++) {
+        printf("argv[%d]: %s\n", i, argv[i]);
+    }
+
     Word *w;
 
-    if (!strcmp(argv[1], "-add")) {
-        if (argc == 5) {
-            FILE *file = fopen("1.txt", "at");
-            if (file) {
-                time_t currentTime = time(NULL);
-                struct tm *localTime = localtime(&currentTime);
-                fprintf(file, "\n%s %s %s %d.%d.%d %d",
-                    argv[2], argv[3], argv[4],
-                    localTime->tm_mday, localTime->tm_mon + 1, localTime->tm_year - 100, 1);
-                fclose(file);
-            }
-        } else {
-            printf("incorrect using option \"-add\"\n");
-        }
+    // if (!strcmp(argv[1], "-add")) {
+    //     if (argc == 5) {
+    //         FILE *file = fopen("1.txt", "at");
+    //         if (file) {
+    //             time_t currentTime = time(NULL);
+    //             struct tm *localTime = localtime(&currentTime);
+    //             fprintf(file, "\n%s %s %s %d.%d.%d %d",
+    //                 argv[2], argv[3], argv[4],
+    //                 localTime->tm_mday, localTime->tm_mon + 1, localTime->tm_year - 100, 1);
+    //             fclose(file);
+    //         }
+    //     } else {
+    //         printf("incorrect using option \"-add\"\n");
+    //     }
+    // }
+
+    FILE *file = fopen("1.txt", "r+t");
+    if (file) {
+        fclose(file);
     }
 
     FILE *file = fopen("1.txt", "rt");
